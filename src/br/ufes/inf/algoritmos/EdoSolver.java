@@ -19,6 +19,8 @@ public class EdoSolver {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		
 		int chosenOption = Integer.parseInt(bufferedReader.readLine());
+
+		bufferedReader.close();
 		int m;
 		int ya;
 		int yb;
@@ -26,16 +28,17 @@ public class EdoSolver {
 		switch (chosenOption) {
 		
 		case 1:
+			break;
 			//Chamar método para resolução do problema 1
 		case 2:
+			break;
 			//Chamar método para resolução do problema 2
 		case 3:
+			break;
 			//Chamar método para resolução do problema 3
 		case 4:
-			System.out.println("Programa encerrado.");;
-		
-			default:
-				System.out.println("Opção inválida. Terminando o programa.");
+			System.out.println("Programa encerrado.");
+			break;
 		}
 		
 		
