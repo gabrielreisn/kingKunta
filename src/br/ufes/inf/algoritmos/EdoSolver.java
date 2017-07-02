@@ -6,6 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/*
+  
+  		Para a questão 1, y(x) = x², p(x) = -1, q(x) = x, então:
+  		
+   			y" + p(x)y' + q(x)y = x³-2x+2
+   			
+   			
+*/
+
 public class EdoSolver {
 
 
@@ -53,8 +63,8 @@ public class EdoSolver {
 		{	
 			for(int i=1; i<m ; i++)															// Preenchendo o vetor B
 			{																				// para o problema 3.
-				if(i==1) vB[i] = 2*(h*h)*r_questao3(vX[i]) - (2+h)*ya;						// substituir 0 por ya
-				else if(i==(m-1)) vB[i] = 2*(h*h)*r_questao3(vX[i]) - (2-h)*yb;	            //substituir 2,718 por yb
+				if(i==1) vB[i] = 2*(h*h)*r_questao3(vX[i]) - (2+h)*ya;						// 
+				else if(i==(m-1)) vB[i] = 2*(h*h)*r_questao3(vX[i]) - (2-h)*yb;	            //
 					 else vB[i] = 2*(h*h)*r_questao3(vX[i]);								//
 			}																				//
 			
@@ -64,12 +74,12 @@ public class EdoSolver {
 			}
 																							// A partir daqui aplica-se o método de gauss
 			double[][] matriz2 = new double[m][m];											//
-			modifica_coeficientes(matriz2, matrizCoef, m);									// Guarda os novos coeficientes na matriz2
+			modifica_coeficientes(matriz2, matrizCoef, m);									// Guarda os coeficientes modificados na matriz2
 																							//
 			double[] vB2 = new double[m];													// Guarda o novo vetor B em vB2
 			modifica_vetorB(vB2, vB, matrizCoef, matriz2, m);								//
 																							//
-			double[] vetor_solucao = new double[m];											// Usa vB2 e matriz2 para calcular soluções e
+			double[] vetor_solucao = new double[m];											// Faz a retrosubstituição e 
 			calcula_solucoes(vetor_solucao, vB2, matriz2, m);								// guarda em vetor_solucao
 								
 			for(int i = 0; i<m ; i++){														// Imprime soluções na tela
@@ -77,7 +87,8 @@ public class EdoSolver {
 					{
 						System.out.format("%.4f", vX[i]);
 						System.out.print(";");
-						System.out.println(ya);
+						System.out.format("%.4f", ya);
+						System.out.println("");
 					}
 				else
 					{
@@ -87,9 +98,9 @@ public class EdoSolver {
 						System.out.println("");
 					}
 			}
-			System.out.format("%.2f", 1.00);
+			System.out.format("%.4f", vX[m]);
 			System.out.print(";");
-			System.out.println(yb);
+			System.out.format("%.4f", yb);
 			System.out.println("");
 			
 			
@@ -104,7 +115,7 @@ public class EdoSolver {
 																									//
 							buffer.write(String.format("%.4f", vX[i]));								//
 							buffer.write(";");														//
-							buffer.write(String.format("%.4f",ya));														//  Ya
+							buffer.write(String.format("%.4f",ya));									//
 							buffer.write(System.lineSeparator());									//
 						}																			//
 					else																			//
@@ -116,9 +127,9 @@ public class EdoSolver {
 						}
 				}
 				
-				buffer.write(String.format("%.4f",vX[m]));																	//  Xb
+				buffer.write(String.format("%.4f",vX[m]));											// 
 				buffer.write(";");																	//
-				buffer.write(String.format("%.4f",yb));																	//  Yb
+				buffer.write(String.format("%.4f",yb));												//
 				buffer.write(System.lineSeparator());
 				
 				buffer.close();
@@ -131,33 +142,34 @@ public class EdoSolver {
 		
 		else if(escolha == 2)
 		{
-			for(int i=1; i<m ; i++)															// Preenchendo o vetor B
+			for(int i=1; i<m ; i++)																	// Preenchendo o vetor B
 			{		
 				if(i==1) vB[i] = 2*(h*h)*r_questao2() - (2 - h*p_questao2())*ya;
-				if(i==(m-1)) vB[i] = 2*(h*h)*r_questao2() - (2 + h*p_questao2())*yb;		// atualizar com as funcoes		
-				else vB[i] = 2*(h*h)*r_questao2();
+				else if(i==(m-1)) vB[i] = 2*(h*h)*r_questao2() - (2 + h*p_questao2())*yb;						
+					 else vB[i] = 2*(h*h)*r_questao2();
 			}	
-				for(int i =1; i<m ; i++) 													// Aqui a matrizCoef é preenchida
-				{																			//
-					preenche_diagonais2(matrizCoef,vX,h,i,m);								//
-				}
-				
-				double[][] matriz2 = new double[m][m];										//
-				modifica_coeficientes(matriz2, matrizCoef, m);								// Guarda os novos coeficientes na matriz2
-																							//
-				double[] vB2 = new double[m];												// Guarda o novo vetor B em vB2
-				modifica_vetorB(vB2, vB, matrizCoef, matriz2, m);							//
-																							//
-				double[] vetor_solucao = new double[m];										// Usa vB2 e matriz2 para calcular soluções e
-				calcula_solucoes(vetor_solucao, vB2, matriz2, m);							// guarda em vetor_solucao
+				for(int i =1; i<m ; i++) 															
+				{																			
+					preenche_diagonais2(matrizCoef,vX,h,i,m);										//matrizCoef é preenchida
+				}																					//
+																									//
+				double[][] matriz2 = new double[m][m];												//
+				modifica_coeficientes(matriz2, matrizCoef, m);										// 
+																									//
+				double[] vB2 = new double[m];														//
+				modifica_vetorB(vB2, vB, matrizCoef, matriz2, m);									//
+																									//
+				double[] vetor_solucao = new double[m];												//
+				calcula_solucoes(vetor_solucao, vB2, matriz2, m);									//
 					
 				
-				for(int i = 0; i<m ; i++){														// Imprime soluções na tela
+				for(int i = 0; i<m ; i++){															// Imprime soluções na tela
 					if(i==0)
 						{
 							System.out.format("%.4f", vX[i]);
 							System.out.print(";");
-							System.out.println(ya);
+							System.out.format("%.4f", ya);
+							System.out.println("");
 						}
 					else
 						{
@@ -167,9 +179,9 @@ public class EdoSolver {
 							System.out.println("");
 						}
 				}
-				System.out.print(vX[m]);
+				System.out.format("%.4f", vX[m]);
 				System.out.print(";");
-				System.out.println(yb);
+				System.out.format("%.4f", yb);
 				System.out.println("");
 				
 				File grafico = new File("grafico.txt");													// Impressão no arquivo
@@ -180,9 +192,9 @@ public class EdoSolver {
 					for(int i =0; i<m ; i++){															//
 						if(i==0)																		//
 							{																			//
-								buffer.write(String.format("%.4f", vX[i]));								// Xa
+								buffer.write(String.format("%.4f", vX[i]));								// 
 								buffer.write(";");														//
-								buffer.write(String.format("%.4f", ya));													// Ya
+								buffer.write(String.format("%.4f", ya));								// 
 								buffer.write(System.lineSeparator());									//
 							}																			//
 						else																			//
@@ -194,9 +206,9 @@ public class EdoSolver {
 							}
 					}
 					
-					buffer.write(String.format("%.4f", vX[m]));																//  Xb
+					buffer.write(String.format("%.4f", vX[m]));											//
 					buffer.write(";");																	//
-					buffer.write(String.format("%.4f", yb));																//  Yb
+					buffer.write(String.format("%.4f", yb));											//
 					buffer.write(System.lineSeparator());
 					
 					buffer.close();
@@ -212,42 +224,42 @@ public class EdoSolver {
 			for(int i=1; i<m ; i++)																	// Preenchendo o vetor B
 			{																			
 				if(i==1) vB[i] = 2*(h*h)*(r_questao1(vX[i])) - (2- h*p_questao1(vX[i]) )* ya;
-				if(i==(m-1)) vB[i] = 2*(h*h)*(r_questao1(vX[i])) - (2+ h*p_questao1(vX[i]) )* yb ;		
-				else vB[i] = 2*(h*h)*0;
+				else if(i==(m-1)) vB[i] = 2*(h*h)*(r_questao1(vX[i])) - (2+ h*p_questao1(vX[i]) )* yb ;		
+					 else vB[i] = 2*(h*h)*r_questao1(vX[i]);
 			}	
-				for(int i =1; i<m ; i++) 															// Aqui a matrizCoef é preenchida
+				for(int i =1; i<m ; i++) 															// matrizCoef é preenchida
 				{																					//
 					preenche_diagonais1(matrizCoef,vX,h,i,m);										//
 				}
 				
 				double[][] matriz2 = new double[m][m];										//
-				modifica_coeficientes(matriz2, matrizCoef, m);								// Guarda os novos coeficientes na matriz2
+				modifica_coeficientes(matriz2, matrizCoef, m);								// 
 																							//
-				double[] vB2 = new double[m];												// Guarda o novo vetor B em vB2
+				double[] vB2 = new double[m];												// 
 				modifica_vetorB(vB2, vB, matrizCoef, matriz2, m);							//
 																							//
-				double[] vetor_solucao = new double[m];										// Usa vB2 e matriz2 para calcular soluções e
-				calcula_solucoes(vetor_solucao, vB2, matriz2, m);							// guarda em vetor_solucao
+				double[] vetor_solucao = new double[m];										// 
+				calcula_solucoes(vetor_solucao, vB2, matriz2, m);							// 
 					
 				
 				for(int i = 0; i<m ; i++){														// Imprime soluções na tela
 					if(i==0)
 						{
-							System.out.format("%.2f", vX[i]);
+							System.out.format("%.4f", vX[i]);
 							System.out.print(";");
-							System.out.println("???");
+							System.out.println(String.format("%.4f", ya));
 						}
 					else
 						{
-							System.out.format("%.2f", vX[i]);
+							System.out.format("%.4f", vX[i]);
 							System.out.print(";");
-							System.out.format("%.2f", vetor_solucao[i]);
+							System.out.format("%.4f", vetor_solucao[i]);
 							System.out.println("");
 						}
 				}
-				System.out.print("1,00");
+				System.out.print(String.format("%.4f", vX[m]));
 				System.out.print(";");
-				System.out.println("???");
+				System.out.println(String.format("%.4f", yb));
 				System.out.println("");
 				
 				File grafico = new File("grafico.txt");													// Impressão no arquivo
@@ -258,23 +270,23 @@ public class EdoSolver {
 					for(int i =0; i<m ; i++){															//
 						if(i==0)																		//
 							{																			//
-								buffer.write(String.format("%.2f", vX[i]));								// Xa
+								buffer.write(String.format("%.4f", vX[i]));								//
 								buffer.write(";");														//
-								buffer.write("Ya");													// Ya
+								buffer.write(String.format("%.4f", ya));														//
 								buffer.write(System.lineSeparator());									//
 							}																			//
 						else																			//
 							{																			//
-								buffer.write(String.format("%.2f", vX[i]));								//
+								buffer.write(String.format("%.4f", vX[i]));								//
 								buffer.write(";");														//
-								buffer.write(String.format("%.2f", vetor_solucao[i]));					//
+								buffer.write(String.format("%.4f", vetor_solucao[i]));					//
 								buffer.write(System.lineSeparator());									//
 							}
 					}
 					
-					buffer.write("1,00");																//  Xb
-					buffer.write(";");																	//
-					buffer.write("Yb");																//  Yb
+					buffer.write(String.format("%.4f", vX[m]));														 
+					buffer.write(";");																	
+					buffer.write(String.format("%.4f", yb));																    
 					buffer.write(System.lineSeparator());
 					
 					buffer.close();
@@ -287,15 +299,7 @@ public class EdoSolver {
 		}
 		
 		
-		
-	/*	
-		for(int i =1; i<m ; i++){															// Imprime a matrizCoef
-			System.out.println("");
-			for(int j =1; j<m ; j++) System.out.print(matrizCoef[i][j] + "    ");
-			System.out.println(vB[i]);
-		}
-	*/	
-teclado.close();																			// Fim da main
+teclado.close();														// FIM DA MAIN
 }
 
 	// ---------------- funções
@@ -405,7 +409,7 @@ private static void preenche_diagonais1(double[][] matrizCoef, double[] vX, doub
 	static public double r_questao2(){
 		return 0;
 	}
-	static public double r_questao1(double vX){				// y" - x + xy = x³-2x+2
+	static public double r_questao1(double vX){				
 		return (vX*vX*vX) - (2*vX) +2;
 	}
 	
