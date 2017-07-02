@@ -32,19 +32,19 @@ public class EdoSolver {
 		
 		escolha = teclado.nextInt();
 		
-		if(escolha >=4){
-			System.out.println("Fim do programa.");
+		if(escolha >=4 || escolha < 1){
+			System.out.println("Problema inválido. Fim do programa.");
 			System.exit(0);
 			
-		}
-		
-		
+		}		
+		System.out.println("OS DECIMAIS DEVEM SER SEPARADOS POR VIRGULA");
+		System.out.println("");
 		System.out.println("Insira quantos intervalos serão usados (m) ");				// Nota para compreensão das variáveis:
 		int m = teclado.nextInt();														//
 		System.out.println("Insira o valor de xa");										// O sistema a ser resolvido é do tipo
-		int a = teclado.nextInt();														//	
+		double a = teclado.nextDouble();														//	
 		System.out.println("Insira o valor de xb");										//			Ax = b
-		int b = teclado.nextInt();														//
+		double b = teclado.nextDouble();														//
 		System.out.println("Insira o valor de ya");										// Onde A é a matriz dos coeficientes
 		double ya = teclado.nextDouble();
 		System.out.println("Insira o valor de yb");
